@@ -1,0 +1,19 @@
+<script>
+var AudioContext = AudioContext;
+var context = new AudioContext();
+var node = context.createBufferSource()
+var buffer = context.createBuffer(1, 4096, context.sampleRate);
+var data = buffer.getChannelData(0);
+
+for (var i = 0; i < 4096; i++) {
+ data[i] = Math.random();
+}
+
+console.log('data', data);
+
+node.buffer = buffer;
+//node.addEventListener('onended', () => { console.log('YO'); });
+node.start(0);
+//node.loop = true;
+node.connect(context.destination);
+</script>

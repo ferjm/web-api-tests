@@ -1,0 +1,42 @@
+<html>
+<header>
+  <style>
+div, textarea {
+  display: inline-block;
+  vertical-align: top;
+  width: 250px;
+  height: 160px;
+  margin-right: 10px;
+}
+.banana {
+  display: none;
+}
+</style>
+</header>
+<body>
+<div contenteditable>
+  <!-- COMMENT -->  
+  A 
+  
+<div class="banana">Algo</div>
+<p hidden>Something</p>
+  mind 
+  
+  needs books<br>as a sword needs a whetstone<p>if it is to <span style="display: block">keep</span> its edge.
+  </p>
+  <table><tbody style='visibility:collapse'><tr><td>abc</td></tr></tbody></table>
+</div>
+<div>
+  innerText<textarea id="innerText" style="display: inline-block"></textarea>
+</div>
+<div>
+  textContent<textarea id="textContent" style="display: inline-block"></textarea>
+</div>
+<div id="set"></div>
+<script>
+document.querySelector('#innerText').value = document.querySelector('div').innerText;
+document.querySelector('#textContent').value = document.querySelector('div').textContent;
+//document.querySelector('div').innerText = 'bannaa';
+</script>
+</body>
+</html>

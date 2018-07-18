@@ -1,0 +1,13 @@
+<!DOCTYPE HTML>
+<style>
+@font-face { font-weight: normal; }
+@font-face { font-weight: 100; }
+@font-face { font-weight: bold; }
+@font-face { font-weight: 400; }
+</style>
+<script>
+console.log(document.styleSheets[0].cssRules[0].style.getPropertyValue('font-weight'));
+console.log(document.styleSheets[0].cssRules[1].style.getPropertyValue('font-weight'));
+console.log(document.styleSheets[0].cssRules[2].style.getPropertyValue('font-weight'));
+console.log(document.styleSheets[0].cssRules[3].style.getPropertyValue('font-weight'));
+</script>

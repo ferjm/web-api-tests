@@ -1,0 +1,31 @@
+<html>
+<head>
+  <script>
+    console.log("NOW", performance.now());
+    var observer = new PerformanceObserver(list => {
+      console.log('GOT NOTIFICATION');
+      list.getEntries().forEach(entry => {
+        // Display each reported measurement on console
+        if (console) {
+          console.log(entry);
+          console.log("Name: "       + entry.name      +
+                      ", Type: "     + entry.entryType +
+                      ", Start: "    + entry.startTime +
+                      ", Duration: " + entry.duration  + "\n");
+        }
+      })
+    });
+    observer.observe({entryTypes: ['resource', 'mark', 'measure', 'paint']});
+    performance.mark('registered-observer');
+
+    function clicked(elem) {
+      console.log('CLICKED');
+   //   performance.measure('button clicked');
+    }
+  </script>
+</head>
+<body>
+  <button onclick="clicked(this)">Measure</button>
+</body>
+</html>
+

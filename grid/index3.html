@@ -1,0 +1,35 @@
+<body>
+<script>
+var initial_values = {
+    gridTemplateAreas: "none",
+    gridTemplateRows: "none",
+    gridTemplateColumns: "none",
+    gridAutoFlow: "row",
+    gridAutoRows: "auto",
+    gridAutoColumns: "auto",
+    gridRowGap: "0px",
+    gridColumnGap: "0px",
+};
+
+var subproperties = ["gridTemplateAreas", "gridTemplateColumns", "gridTemplateRows"];
+var shorthand = "gridTemplate";
+
+var test_case = {
+      gridTemplateAreas: "\"a\"",
+      gridTemplateRows: "[foo] repeat(1, 20px) [bar]"
+};
+
+/*test_case = {
+      gridTemplateRows: "[foo] 40px [bar]",
+      gridTemplateColumns: "[baz] 100px [fizz]"
+};*/
+
+var element = document.createElement('div');
+document.body.appendChild(element);
+subproperties.forEach(function(longhand) {
+    element.style[longhand] = test_case[longhand] ||
+                              initial_values[longhand];
+});
+console.log(element.style[shorthand]);
+</script>
+</body>

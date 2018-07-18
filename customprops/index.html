@@ -1,0 +1,6 @@
+<!DOCTYPE html>
+<p style="--foo:bar">hello</p>
+<script>
+  var p = document.querySelector('p');
+  alert(getComputedStyle(p).getPropertyValue('--foo'));
+</script>

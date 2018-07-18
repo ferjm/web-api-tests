@@ -1,0 +1,11 @@
+<div id="banana">123<em>abc</em>def</div>
+
+<div>
+  <textarea id="innerText" style="display: inline-block"></textarea>
+</div>
+<script>
+const innerText = document.querySelector('#banana').innerText;
+document.querySelector('#innerText').value = innerText;
+console.log(innerText == 'abc\t\tdef');
+console.log(innerText == '\tabc\t\tdef');
+</script>

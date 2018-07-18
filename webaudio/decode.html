@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width">
+
+    <title>decodeAudioData example</title>
+
+    <link rel="stylesheet" href="">
+  </head>
+
+  <body>
+    <h1>decodeAudioData example</h1>
+
+    <button class="stop">Stop</button>
+    <pre></pre>
+  </body>
+<script>
+
+
+// define variables
+
+var audioCtx = new AudioContext();
+var source;
+var songLength;
+
+var pre = document.querySelector('pre');
+var myScript = document.querySelector('script');
+var stop = document.querySelector('.stop');
+
+
+// use XHR to load an audio track, and
+// decodeAudioData to decode it and stick it in a buffer.
+// Then we put the buffer into the source
+
+function getData() {
+  source = audioCtx.createBufferSource();
+  request = new XMLHttpRequest();
+
+  request.open('GET', 'viper.ogg', true);
+
+  request.responseType = 'arraybuffer';
+
+  request.onload = function() {
+    var audioData = request.response;
+
+    console.log('Decoding audio');
+    audioCtx.decodeAudioData(audioData, function(buffer) {
+        console.log('Decoded');
+        myBuffer = buffer;
+        songLength = buffer.duration;
+        source.buffer = myBuffer;
+        source.connect(audioCtx.destination);
+      },
+
+      function(e){"Error with decoding audio data" + e.error});
+  }
+
+  request.send();
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+  getData();
+  source.start(0);
+  stop.onclick = function() {
+    source.stop(0);
+  }
+});
+</script>
+</html>
