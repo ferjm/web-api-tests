@@ -12,7 +12,7 @@ for (var i = 0; i < 4096; i++) {
 console.log('data', data);
 
 node.buffer = buffer;
-//node.addEventListener('onended', () => { console.log('YO'); });
+node.addEventListener('ended', () => { console.log('YO'); });
 node.start(0);
 //node.loop = true;
 node.connect(context.destination);

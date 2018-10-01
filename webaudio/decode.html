@@ -46,11 +46,11 @@ function getData() {
     var audioData = request.response;
 
     console.log('Decoding audio');
+    var now = Date.now();
     audioCtx.decodeAudioData(audioData, function(buffer) {
-        console.log('Decoded');
-        myBuffer = buffer;
+        console.log('Decoded in ', Date.now() - now);
         songLength = buffer.duration;
-        source.buffer = myBuffer;
+        source.buffer = buffer;
         source.connect(audioCtx.destination);
       },
 

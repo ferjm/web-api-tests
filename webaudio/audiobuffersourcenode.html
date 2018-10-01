@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <title>WebAudio AudioBufferSourceNode Test</title>
+  </head>
+
+  <body>
+    <script type="text/javascript">
+      function createTestBuffer(context, sampleFrameLength) {
+        let audioBuffer =
+          context.createBuffer(1, sampleFrameLength, context.sampleRate);
+        let channelData = audioBuffer.getChannelData(0);
+
+        // Create a simple linear ramp starting at zero, with each value in the buffer
+        // equal to its index position.
+        for (let i = 0; i < sampleFrameLength; ++i)
+          channelData[i] = i;
+
+        return audioBuffer;
+      }
+
+      let sampleRate = 44100.0;
+      let numberOfFrames = 32;
+      context = new OfflineAudioContext(1, numberOfFrames, sampleRate);
+      source = context.createBufferSource();
+      console.log("SOURCE!");
+      source.buffer = createTestBuffer(context, numberOfFrames);
+      source.connect(context.destination);
+      source.onended = function() {
+        console.log("ONENDED");
+      };
+      source.addEventListener('onended', function() {
+        console.log("OY");
+      });
+      source.start(0);
+      context.startRendering();
+      console.log("STARTED RENDERING");
+    </script>
+  </body>
+</html>
