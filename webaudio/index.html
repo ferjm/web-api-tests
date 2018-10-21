@@ -14,10 +14,7 @@
   var oscillator = context.createOscillator();
   oscillator.connect(context.destination);
 
-  oscillator.start(0); // starts playing
-  setTimeout(function() { oscillator.stop(0) }, 2000);
-
-  oscillator.addEventListener('onended', () => { console.log('YO'); });
+  oscillator.start(0);
 </script>
 </body>
 </html>
