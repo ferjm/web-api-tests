@@ -14,6 +14,7 @@
     <button class="pause hidden">Pause</button>
     <button class="backward hidden">-5sec</button>
     <button class="forward hidden">+5sec</button>
+    <div><span id="progress">0</span>/<span id="duration">0</span>secs</div>
     <script>
       let video = document.querySelector("video");
       let play = document.querySelector(".play");
@@ -55,6 +56,22 @@
         video.currentTime -= 5;
       });
 
+      ['loadstart', 'progress', 'suspend', 'abort', 'emptied', 'stalled',
+       'loadedmetadata', 'loadeddata', 'canplay', 'canplaythrough', 'playing',
+       'waiting', 'seeking', 'seeked', 'ended', 'durationchange', 'timeupdate',
+       'play', 'pause', 'ratechange', 'resize', 'volumechange'].forEach(ev => {
+         video.addEventListener(ev, () => {
+           if (ev == "durationchange") {
+             document.getElementById("duration").textContent = video.duration;
+           }
+           console.log(ev);
+         });
+       });
+
+      let progress = document.getElementById("progress");
+      setInterval(() => {
+        progress.textContent = video.currentTime;
+      }, 500);
     </script>
   </body>
 </html>
