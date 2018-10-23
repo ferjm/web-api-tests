@@ -43,7 +43,7 @@ function getRange(finish) {
   console.log('range: ', range);
   var options = {
     headers: {
-//      'Range': range
+      'Range': range
     }
   };
   fetch(url, options).then(function(response) {

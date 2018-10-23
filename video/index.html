@@ -1,13 +1,61 @@
 <html lang="en">
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Fetch video</title>
-</head>
-<body>
-<div id="container">
-  <video></video>
-  <script src="js/main.js"></script>
-</div>
-</body>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Video test</title>
+    <style>
+      .hidden {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <video src="mov_bbb.mp4"></video>
+    <button class="play">Play</button>
+    <button class="pause hidden">Pause</button>
+    <button class="backward hidden">-5sec</button>
+    <button class="forward hidden">+5sec</button>
+    <script>
+      let video = document.querySelector("video");
+      let play = document.querySelector(".play");
+      let pause = document.querySelector(".pause");
+      let forward = document.querySelector(".forward");
+      let backward = document.querySelector(".backward");
+
+      play.addEventListener("click", () => {
+        if (!video.paused) {
+          return;
+        }
+        play.classList.add('hidden');
+        pause.classList.remove('hidden');
+        forward.classList.remove('hidden');
+        backward.classList.remove('hidden');
+        video.play().catch(e => {
+          console.error(e);
+        });
+      });
+
+      pause.addEventListener("click", () => {
+        if (video.paused) {
+          return;
+        }
+        play.classList.remove('hidden');
+        pause.classList.add('hidden');
+        forward.classList.add('hidden');
+        backward.classList.add('hidden');
+        video.pause();
+      });
+
+      forward.addEventListener("click", () => {
+        console.log('Seek to ' + (video.currentTime + 5));
+        video.currentTime += 5;
+      });
+
+      backward.addEventListener("click", () => {
+        console.log('Seek to ' + (video.currentTime - 5));
+        video.currentTime -= 5;
+      });
+
+    </script>
+  </body>
 </html>
 
