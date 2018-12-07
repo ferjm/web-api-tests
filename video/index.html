@@ -9,18 +9,24 @@
     </style>
   </head>
   <body>
-    <video src="mov_bbb.mp4"></video>
+    <video
+      src="http://download.blender.org/peach/bigbuckbunny_movies/big_buck_bunny_480p_stereo.ogg"
+      poster="https://peach.blender.org/wp-content/uploads/title_anouncement.jpg?x11217"
+      width="640"
+      height="360">Video not supported</video>
     <button class="play">Play</button>
     <button class="pause hidden">Pause</button>
     <button class="backward hidden">-5sec</button>
     <button class="forward hidden">+5sec</button>
+    <button class="fullscreen hidden">Fullscreen</button>
     <div><span id="progress">0</span>/<span id="duration">0</span>secs</div>
     <script>
       let video = document.querySelector("video");
       let play = document.querySelector(".play");
       let pause = document.querySelector(".pause");
       let forward = document.querySelector(".forward");
-      let backward = document.querySelector(".backward");
+      let backward = document.querySelector(".backward"); 
+      let fullscreen = document.querySelector(".fullscreen");
 
       play.addEventListener("click", () => {
         if (!video.paused) {
@@ -30,6 +36,7 @@
         pause.classList.remove('hidden');
         forward.classList.remove('hidden');
         backward.classList.remove('hidden');
+        fullscreen.classList.remove('hidden');
         video.play().catch(e => {
           console.error(e);
         });
@@ -43,6 +50,7 @@
         pause.classList.add('hidden');
         forward.classList.add('hidden');
         backward.classList.add('hidden');
+        fullscreen.classList.add('hidden');
         video.pause();
       });
 
@@ -54,6 +62,10 @@
       backward.addEventListener("click", () => {
         console.log('Seek to ' + (video.currentTime - 5));
         video.currentTime -= 5;
+      });
+
+      fullscreen.addEventListener("click", e => {
+        e.target.requestFullscreen();
       });
 
       ['loadstart', 'progress', 'suspend', 'abort', 'emptied', 'stalled',
