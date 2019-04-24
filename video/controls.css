@@ -1,0 +1,22 @@
+.controls {
+  position: fixed;
+  width: 100%;
+  padding: 0 9px;
+}
+
+.playing {
+  display: block;
+  width: 24px;
+  height: 24px;
+  background: url("data:image/png;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNNiAxOWg0VjVINnYxNHptOC0xNHYxNGg0VjVoLTR6Ii8+PHBhdGggZD0iTTAgMGgyNHYyNEgweiIgZmlsbD0ibm9uZSIvPjwvc3ZnPg==");
+  border: none;
+}
+
+.paused {
+  display: block;
+  width: 24px;
+  height: 24px;
+  background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAKklEQVR4AWMYWUABiB2gWAG3OGHQAMT/obgBl/igNGjUoFGDKM8iIwcAAPiWPtn7PkKeAAAAAElFTkSuQmCC") no-repeat;
+  border: none;
+}
+

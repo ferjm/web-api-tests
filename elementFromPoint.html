@@ -1,0 +1,25 @@
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+      var host = document.getElementById('host');
+      var shadowRoot = host.attachShadow({mode:"closed"});
+      var shadowChild = document.createElement('h1');
+      shadowChild.classList.add('header');
+      shadowChild.textContent = 'In the shadows';
+      shadowRoot.appendChild(shadowChild);
+
+//     console.log('shadow', shadowRoot.elementsFromPoint(20, 25));
+//      console.log('document', document.elementsFromPoint(20, 25));
+
+      console.log('shadow', shadowRoot.elementFromPoint(20, 25), '\n');
+      console.log('document', document.elementFromPoint(20, 25));
+
+    document.addEventListener("click", function(event){
+      var el = document.elementFromPoint(event.clientX, event.clientY);
+      console.log('\n\ndocument', event.clientX, event.clientY, el.nodeName);
+      var el = shadowRoot.elementFromPoint(event.clientX, event.clientY);
+      console.log('shadow', event.clientX, event.clientY, el.nodeName);
+    });
+  });
+</script>
+<div id="host">
+</div>

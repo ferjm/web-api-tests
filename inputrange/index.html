@@ -1,0 +1,10 @@
+<input type="range" value="10"></input>
+<script>
+  const input = document.querySelector("input");
+  input.addEventListener("change", () => {
+    console.log("CHANGE");
+  });
+  input.addEventListener("input", () => {
+    console.log("INPUT");
+  });
+</script>

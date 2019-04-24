@@ -1,0 +1,156 @@
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="controls.css">
+</head>
+<body>
+  <video id="video"></video>
+  <div id="root">
+  </div>
+  <script>
+  (() => {
+    "use strict";
+
+    const MARKUP = `
+      <button id="play-pause-button"></button>
+      <span id="position">
+        0:00
+        <span id="duration"> / 0:00</span>
+      </span>
+      <button id="mute"></button>
+      <input id="volume" type="range" value="100" min="0" max="100" step="1"></input>
+    `;
+
+    // States.
+    const PAUSED = "paused";
+    const BUFFERING = "buffering";
+    const PLAYING = "playing";
+    const ERRORED = "errored";
+
+    // State transitions.
+    const TRANSITIONS = {
+      buffer: {
+        "paused": "buffering",
+      },
+      pause: {
+        "buffering": "paused",
+        "playing": "paused",
+      },
+      play: {
+        "buffering": "playing",
+        "paused": "playing",
+      },
+      error: {
+        "buffering": "errored",
+        "playing": "errored",
+        "paused": "errored",
+      }
+    };
+
+    function camelCase(str) {
+      const rdashes = /-(.)/g;
+      return str.replace(rdashes, (str, p1) => {
+        return p1.toUpperCase();
+      });
+    }
+
+    class MediaControls {
+      constructor() {
+        // Get the instance of the shadow root where these controls live.
+        this.controls = document.getElementById("root");
+        // Get the instance of the host of these controls.
+        this.media = document.getElementById("video");
+
+        // Create root element and load markup.
+        const root = document.createElement("div");
+        root.classList.add("controls");
+        root.innerHTML = MARKUP;
+        this.controls.appendChild(root);
+
+        // Import elements.
+        this.elements = {};
+        [
+          "play-pause-button"
+        ].forEach(id => {
+          this.elements[camelCase(id)] = document.getElementById(id);
+        });
+
+        // Create state transitions.
+        //
+        // It exposes one method per transition. i.e. this.pause(), this.play(), etc.
+        // For each transition, we check that the transition is possible and call
+        // the `onStateChange` handler.
+        for (let name in TRANSITIONS) {
+          if (!TRANSITIONS.hasOwnProperty(name)) {
+            continue;
+          }
+          this[name] = () => {
+            const from = this.state;
+
+            // Checks if the transition is valid in the current state.
+            if (!TRANSITIONS[name][from]) {
+              const error = `Transition "${name}" invalid for the current state "${from}"`;
+              console.error(error);
+              throw new Error(error);
+            }
+
+            const to = name;
+
+            if (from == to) {
+              return;
+            }
+
+            // Transition to the next state.
+            this.state = to;
+            this.onStateChange();
+          };
+        }
+
+        // Set initial state.
+        this.state = PAUSED;
+        this.onStateChange();
+      }
+
+      // State change handler
+      onStateChange(from) {
+        this.render(from);
+      }
+
+      render(from) {
+        // Error
+        if (this.state == ERRORED) {
+          //XXX render errored state
+          return;
+        }
+
+        // Play/Pause button.
+        const playPauseButton = this.elements.playPauseButton;
+        playPauseButton.classList.remove(from);
+        playPauseButton.classList.add(this.state);
+      }
+
+      // HTMLMediaElement event handler
+      onMediaEvent(event) {
+      }
+      
+      /* Media actions */
+
+      playMedia() {
+        this.media.play();
+      }
+
+      pauseMedia() {
+        this.media.pause();
+      }
+
+      volumechange() {
+      }
+
+      seek() {
+      }
+    }
+
+    new MediaControls();
+  })();
+  </script>
+</body>
+</html>

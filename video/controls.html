@@ -1,0 +1,21 @@
+
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Video test</title>
+    <style>
+      .hidden {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <video src="https://addpipe.com/sample_vid/short.mp4" poster="https://addpipe.com/sample_vid/poster.png"></video>
+    <script>
+      setTimeout(() => {
+        document.querySelector("video").setAttribute("controls", "");
+      });
+    </script>
+  </body>
+</html>
+
