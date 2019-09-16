@@ -1,0 +1,13 @@
+<script id="to-remove">
+  setInterval(() => {
+    console.log('here!');
+  }, 1000);
+</script>
+<script>
+  setTimeout(() => {
+    let script = document.getElementById("to-remove");
+    script.parentNode.removeChild(script);
+  }, 5000);
+</script>
+
+

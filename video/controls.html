@@ -1,20 +1,22 @@
-
 <html lang="en">
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Video test</title>
     <style>
-      .hidden {
-        display: none;
+      video {
+        display:block;
       }
     </style>
   </head>
   <body>
-    <video src="https://addpipe.com/sample_vid/short.mp4" poster="https://addpipe.com/sample_vid/poster.png"></video>
+    <video controls autoplay src="https://www.freedesktop.org/software/gstreamer-sdk/data/media/sintel_trailer-480p.webm"></video>
     <script>
       setTimeout(() => {
-        document.querySelector("video").setAttribute("controls", "");
-      });
+        document.querySelector("video").removeAttribute("controls");
+        setTimeout(() => {
+          document.querySelector("video").setAttribute("controls", "");
+        }, 10000);
+      }, 10000);
     </script>
   </body>
 </html>

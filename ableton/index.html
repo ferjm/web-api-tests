@@ -1,0 +1,50 @@
+<script src="https://learningsynths.ableton.com/js/externals/react.production.min.js"></script>
+<script src="https://learningsynths.ableton.com/js/externals/react-dom.production.min.js"></script>
+<script src="https://learningsynths.ableton.com/js/externals/Tone.min.js"></script>
+<script src="https://learningsynths.ableton.com/js/musiclab.js"></script>
+<script>
+function isBrowserCompatible() {
+    function supportsES6() {
+        try {
+            new Function("(a = 0) => a");
+            return true;
+        }
+        catch (e) { }
+        return false;
+    };
+
+    function supportsWasm() {
+        try {
+            if (typeof WebAssembly === "object"
+             && typeof WebAssembly.instantiate === "function") {
+                const module = new WebAssembly.Module(Uint8Array.of(0x0, 0x61, 0x73, 0x6d, 0x01, 0x00, 0x00, 0x00));
+                if (module instanceof WebAssembly.Module)
+                    return new WebAssembly.Instance(module) instanceof WebAssembly.Instance;
+            }
+        } catch (e) {}
+        return false;
+    }
+
+    var supportsWebAudio = window.hasOwnProperty("AudioContext")
+                        || window.hasOwnProperty("webkitAudioContext");
+    var supportsPromises = window.hasOwnProperty("Promise");
+    var supportsWorkers = window.hasOwnProperty("Worker");
+    return supportsES6()
+        && supportsWebAudio
+        && supportsPromises
+        && supportsWorkers
+        && supportsWasm();
+}
+
+if (!isBrowserCompatible()) {
+  console.log("NOT COMPATIBLE");
+} else {
+  console.log("COMPATIBLE");
+}
+
+MusicLab.init({ staticURL: "" }).then(() => {
+  console.log("YAY");
+}).catch(e => {
+  console.log("CRAP", e);
+});
+</script>

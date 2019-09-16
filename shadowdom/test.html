@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-  <title>Shadow DOM tester</title>
   <style>
     h1 {
       color: red;
@@ -13,68 +10,14 @@
 <body>
 <h1 id="out" class="header">Not in the shadow</h1>
 <div id="host">
-  <h1>Something Something</h1>
 </div>
-<p>Whatever</p>
 <script>
       var host = document.getElementById('host');
-      var shadowRoot = host.attachShadow({mode:"closed"});
-      console.log('shadowRoot', host.shadowRoot);
-      console.log('by tag', document.body.getElementsByTagName('h1').length);
-      console.log('by class', document.body.getElementsByClassName('header').length);
-      console.log('childNodes', document.body.childNodes.length);
-      console.log('querySelectorAll(h1)', document.querySelectorAll('h1').length);
-
+      var shadowRoot = host.attachShadow({ mode: 'closed' });
       var div = document.createElement('div');
       div.innerHTML = "<h1 id='in'>In the shadows</h1>";
       shadowRoot.appendChild(div);
-
-      /*
-      var shadowStyles = document.createElement('link');
-      shadowStyles.setAttribute('rel', 'stylesheet');
-      shadowStyles.setAttribute('type', 'text/css');
-      shadowStyles.setAttribute('href', 'shadow.css');
-      shadowRoot.appendChild(shadowStyles);*/
-
-  
       var shadowStyles = document.createElement('style');
-      shadowStyles.textContent = 'h1 { color: blue; -servo-top-layer: top;}';
+      shadowStyles.textContent = 'h1 { color: blue; }';
       shadowRoot.appendChild(shadowStyles);
-/*
-      console.log('STYLESHEETS', shadowRoot.styleSheets[0]);
-
-      console.log('AFTER APPENDING TO SHADOW TREE');
-      console.log('by tag', document.body.getElementsByTagName('h1').length);
-      console.log('by class', document.body.getElementsByClassName('header').length);
-      console.log('childNodes', document.body.childNodes.length);
-      console.log('document.querySelectorAll(h1)', document.querySelectorAll('h1')[0].id);
-      console.log('shadowRoot.querySelectorAll(h1)', shadowRoot.querySelectorAll('h1')[0].id);
-      console.log("document.querySelectorAll('h1')[0].getRootNode()", document.querySelectorAll('h1')[0].getRootNode({composed: true}));
-
-
-      console.log('CREATING SCRIPT'); 
-      var script = document.createElement('script');
-      console.log('SETTIN SRC');
-      script.setAttribute('src', 'shadow.js');
-      /*
-      script.textContent = `
-        console.log("FROM SHADOW TREE, document.querySelectorAll('h1')", document.querySelectorAll("h1")[0].id);
-        console.log("FROM SHADOW TREE, shadowRoot.querySelectorAll('h1')", shadowRoot.querySelectorAll("h1")[0].id);
-        console.log("FROM SHADOW TREE, document.querySelectorAll('h1')[0].getRootNode()", shadowRoot.querySelectorAll('h1')[0].getRootNode({composed: true}));
-      `;
-      
-      console.log('APPENDING TO SHADOW ROOT\n\n\n\n');
-      shadowRoot.appendChild(script);*/
-
-      console.log('BEFORE TIMEOUT');
-      var p = document.createElement('p');
-      p.textContent = 'banana';
-      shadowRoot.appendChild(p);
-
-      setTimeout(() => {
-        console.log("appending child");
-        var p = document.createElement('p');
-        p.textContent = 'banana';
-        shadowRoot.appendChild(p);
-      }, 0);
 </script>

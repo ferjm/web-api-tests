@@ -6,15 +6,18 @@
       .hidden {
         display: none;
       }
+      video {
+        display: inline;
+      }
     </style>
   </head>
   <body>
-    <video autoplay src="https://github.com/web-platform-tests/wpt/blob/master/media/movie_5.ogv?raw=true"></video>
+    <video controls src="https://www.freedesktop.org/software/gstreamer-sdk/data/media/sintel_trailer-480p.webm"></video>
     <button class="play">Play</button>
     <button class="pause hidden">Pause</button>
     <button class="backward hidden">-5sec</button>
     <button class="forward hidden">+5sec</button>
-    <button class="fullscreen hidden">Fullscreen</button>
+    <button class="fullscreen">Fullscreen</button>
     <div><span id="progress">0</span>/<span id="duration">0</span>secs</div>
     <script>
       let video = document.querySelector("video");
@@ -42,10 +45,6 @@
         if (video.paused) {
           return;
         }
-        play.classList.remove('hidden');
-        pause.classList.add('hidden');
-        forward.classList.add('hidden');
-        backward.classList.add('hidden');
         fullscreen.classList.add('hidden');
         video.pause();
       });
@@ -61,7 +60,7 @@
       });
 
       fullscreen.addEventListener("click", e => {
-        e.target.requestFullscreen();
+        video.requestFullscreen();
       });
 
       ['loadstart', 'progress', 'suspend', 'abort', 'emptied', 'stalled',

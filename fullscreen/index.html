@@ -1,0 +1,15 @@
+<!--<img src="https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.6dybcu9-lbYZiP5_ghMOygAAAA%26pid%3DApi&f=1" style="display:block"></img>-->
+<!--<button id="video">FULLSCREEN VIDEO</button>-->
+<button id="img">FULLSCREEN IMG</button>
+<video src="https://www.freedesktop.org/software/gstreamer-sdk/data/media/sintel_trailer-480p.webm" autoplay style="display:inline-block" controls></video>
+<script>
+  document.querySelector('button').addEventListener('click', () => {
+    document.querySelector('video').requestFullscreen().then(() => {
+      console.log(document.fullscreenEnabled);
+      console.log(document.fullscreenElement == document.querySelector('video'));
+      setTimeout(() => {
+        document.exitFullscreen();
+      }, 2000);
+    });
+  });
+</script>
