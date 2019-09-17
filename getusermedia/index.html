@@ -1,6 +1,7 @@
 <video autoplay width=320 height=240></video>
+<a href="https://google.es">GO</a>
 <script>
-var constraints = { audio: true, video: false }; 
+var constraints = { audio: true, video: true }; 
 navigator.mediaDevices.getUserMedia(constraints)
   .then(function(mediaStream) {
       var video = document.querySelector('video');
