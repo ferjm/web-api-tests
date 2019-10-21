@@ -46,7 +46,8 @@
         if (video.paused) {
           return;
         }
-        fullscreen.classList.add('hidden');
+        pause.classList.add('hidden');
+        play.classList.remove('hidden');
         video.pause();
       });
 
@@ -80,6 +81,20 @@
       setInterval(() => {
         progress.textContent = video.currentTime;
       }, 500);
+
+      if ('mediaSession' in navigator) {
+        navigator.mediaSession.metadata = new MediaMetadata({
+          title: 'Unforgettable',
+          artist: 'Nat King Cole',
+          album: 'The Ultimate Collection (Remastered)',
+        });
+        navigator.mediaSession.setActionHandler('play', function() { console.log('PLAY'); });
+        navigator.mediaSession.setActionHandler('pause', function() { console.log('PAUSE'); });
+        navigator.mediaSession.setActionHandler('seekbackward', function() { });
+        navigator.mediaSession.setActionHandler('seekforward', function() { /* Code excerpted. */ });
+        navigator.mediaSession.setActionHandler('previoustrack', function() { /* Code excerpted. */ });
+        navigator.mediaSession.setActionHandler('nexttrack', function() { /* Code excerpted. */ });
+      }
     </script>
   </body>
 </html>
