@@ -88,8 +88,8 @@
           artist: 'Nat King Cole',
           album: 'The Ultimate Collection (Remastered)',
         });
-        navigator.mediaSession.setActionHandler('play', function() { console.log('PLAY'); });
-        navigator.mediaSession.setActionHandler('pause', function() { console.log('PAUSE'); });
+        navigator.mediaSession.setActionHandler('play', function() { video.play() });
+        navigator.mediaSession.setActionHandler('pause', function() { video.pause() });
         navigator.mediaSession.setActionHandler('seekbackward', function() { });
         navigator.mediaSession.setActionHandler('seekforward', function() { /* Code excerpted. */ });
         navigator.mediaSession.setActionHandler('previoustrack', function() { /* Code excerpted. */ });
