@@ -73,6 +73,17 @@
            if (ev == "durationchange") {
              document.getElementById("duration").textContent = video.duration;
            }
+           if (ev == "playing") {
+             play.classList.add('hidden');
+             pause.classList.remove('hidden');
+             forward.classList.remove('hidden');
+             backward.classList.remove('hidden');
+             fullscreen.classList.remove('hidden');
+           }
+           if (ev == "pause") {
+             pause.classList.add('hidden');
+             play.classList.remove('hidden');
+           }
            console.log(ev);
          });
        });
