@@ -1,1 +1,20 @@
-<div>Hello world</div>
+<html>
+  <head>
+    <style>
+      div::before {
+        content: url("./firefox_64x64.png");
+        border: 1px solid blue;
+      }
+
+      div {
+        border: 1px dotted red;
+      }
+
+    </style>
+  </head>
+  <body>
+    <p style="text-decoration: underline">This should be underlined</p>
+    <p style="text-decoration: overline">This should be overlined</p>
+    <p style="text-decoration: line-through">This text has a line going through it.</p>
+  </body>
+</html>
