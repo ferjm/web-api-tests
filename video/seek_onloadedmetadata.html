@@ -1,0 +1,19 @@
+<html>
+  <head>
+    <title>Video test</title>
+  </head>
+  <body>
+    <h1>Video</h1>
+    <video src="mov_bbb.mp4" controls></video>
+    <script>
+        const video = document.querySelector('video');
+        video.addEventListener('loadedmetadata', (event) => {
+            console.log('onloadedmetadata received');
+            setTimeout(() => {
+                console.log('Seeking to t=15');
+                video.currentTime = 15;
+            }, 2000);
+        });
+    </script>
+  </body>
+</html>
