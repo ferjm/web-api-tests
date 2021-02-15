@@ -9,10 +9,11 @@
         const video = document.querySelector('video');
         video.addEventListener('loadedmetadata', (event) => {
             console.log('onloadedmetadata received');
-            setTimeout(() => {
-                console.log('Seeking to t=15');
-                video.currentTime = 15;
-            }, 2000);
+            console.log('Seeking to t=15');
+            video.currentTime = 15;
+        });
+        video.addEventListener('seeked', (event) => {
+            console.log('Seek received');
         });
     </script>
   </body>
