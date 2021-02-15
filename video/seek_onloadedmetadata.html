@@ -11,6 +11,7 @@
             console.log('onloadedmetadata received');
             console.log('Seeking to t=15');
             video.currentTime = 15;
+            video.play();
         });
         video.addEventListener('seeked', (event) => {
             console.log('Seek received');
