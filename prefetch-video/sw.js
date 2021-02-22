@@ -7,7 +7,7 @@ self.addEventListener('install', function(event) {
   var urlsToPrefetch = [
     './',
     'index.js',
-    'sintel-1280-surround.mp4',
+    'bbb.mp4',
   ];
 
   // All of these logging statements should be visible via the "Inspect" interface
