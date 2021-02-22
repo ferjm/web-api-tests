@@ -1,4 +1,4 @@
-var CACHE_VERSION = 1;
+var CACHE_VERSION = 2;
 var CURRENT_CACHES = {
   prefetch: 'prefetch-cache-v' + CACHE_VERSION
 };
@@ -7,7 +7,7 @@ self.addEventListener('install', function(event) {
   var urlsToPrefetch = [
     './',
     'index.js',
-    'bbb.mp4',
+    'video.mp4',
   ];
 
   // All of these logging statements should be visible via the "Inspect" interface
