@@ -13,6 +13,7 @@
             const option = document.createElement('option');
             option.textContent = i;
             option.value = device.deviceId;
+            select.appendChild(option);
         });
     }
     async function setSinkId() {
