@@ -20,7 +20,7 @@
         const deviceId = document.querySelectorAll('select')[0].value;
         await audio.setSinkId(deviceId);
         console.log('Audio is being played on ' + audio.sinkId);
-        audio.play();
+        audio.play().catch(console.error);
     };
     window.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('button')[0].addEventListener('click', enumerateDevices);
