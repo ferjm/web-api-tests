@@ -1,14 +1,29 @@
 <button id="go">Go</button>
+<select>
+</select>
 <script>
-    async function setSinkId() {
+    let audio = document.createElement('audio');
+    audio.src = 'audio/viper_cut.ogg';
+
+    async function enumerateDevices() {
         const devices = await navigator.mediaDevices.enumerateDevices();
         const audioDevices = devices.filter(device => device.kind === 'audiooutput');
-        const audio = document.createElement('audio');
-        await audio.setSinkId(audioDevices[0].deviceId);
+        const select = document.querySelectorAll('select')[0];
+        audioDevices.forEach((device, i) => {
+            const option = document.createElement('option');
+            option.textContent = i;
+            option.value = device.deviceId;
+        });
+    }
+    async function setSinkId() {
+        const deviceId = document.querySelectorAll('select')[0].value;
+        await audio.setSinkId(deviceId);
         console.log('Audio is being played on ' + audio.sinkId);
-        audio.src = 'audio/viper_cut.ogg';
+        audio.stop();
+        audio.play();
     };
     window.addEventListener('DOMContentLoaded', () => {
-        document.querySelectorAll('button')[0].addEventListener('click', setSinkId);
+        document.querySelectorAll('button')[0].addEventListener('click', enumerateDevices);
+        document.querySelectorAll('select')[0].addEventListener('change', setSinkId);
     });
 </script>
