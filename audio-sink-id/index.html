@@ -1,10 +1,14 @@
+<button id="go">Go</button>
 <script>
-    (async function() {
+    async function setSinkId() {
         const devices = await navigator.mediaDevices.enumerateDevices();
         const audioDevices = devices.filter(device => device.kind === 'audiooutput');
         const audio = document.createElement('audio');
         await audio.setSinkId(audioDevices[0].deviceId);
         console.log('Audio is being played on ' + audio.sinkId);
         audio.src = 'audio/viper_cut.ogg';
-    })();
+    };
+    window.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('button').addEventListener('click', setSinkId);
+    });
 </script>
