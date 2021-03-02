@@ -6,7 +6,7 @@
     audio.src = 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3';
 
     async function enumerateDevices() {
-        await navigator.mediaDevices.getuserMedia({audio: true});
+        await navigator.mediaDevices.getUserMedia({audio: true});
         const devices = await navigator.mediaDevices.enumerateDevices();
         const audioDevices = devices.filter(device => device.kind === 'audiooutput');
         const select = document.querySelectorAll('select')[0];
