@@ -4,9 +4,9 @@
 <script>
     let audio = document.createElement('audio');
     audio.src = 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3';
-    audio.play();
 
     async function enumerateDevices() {
+        audio.play();
         await navigator.mediaDevices.getUserMedia({audio: true, video: true});
         const devices = await navigator.mediaDevices.enumerateDevices();
         const audioDevices = devices.filter(device => device.kind === 'audiooutput');
