@@ -4,6 +4,7 @@
 <script>
     let audio = document.createElement('audio');
     audio.src = 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3';
+    audio.play();
 
     async function enumerateDevices() {
         await navigator.mediaDevices.getUserMedia({audio: true, video: true});
@@ -21,7 +22,7 @@
         const deviceId = document.querySelectorAll('select')[0].value;
         await audio.setSinkId(deviceId);
         console.log('Audio is being played on ' + audio.sinkId);
-        audio.play().catch(console.error);
+        //audio.play().catch(console.error);
     };
     window.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('button')[0].addEventListener('click', enumerateDevices);
